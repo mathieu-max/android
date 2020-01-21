@@ -18,7 +18,7 @@ class HomeActivity : AppCompatActivity() {
 
         idButtonDeco.setOnClickListener {
             setContentView(R.layout.activity_login)
-            finish()
+            //finish()
         }
     }
 }
