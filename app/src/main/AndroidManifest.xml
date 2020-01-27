@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="fr.isen.jaffus.androidtoolbox">
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,12 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CycleFragment2"></activity>
+        <activity android:name=".PermitActivity"></activity>
+        <activity android:name=".StorageActivity" />
+        <activity android:name=".FormulaireActivity" />
+        <activity android:name=".CycleFragment2" />
         <activity android:name=".CycleFragment1" />
         <activity android:name=".LifeCycleActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".LoginActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".HomeActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

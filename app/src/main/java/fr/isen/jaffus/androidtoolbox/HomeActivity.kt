@@ -16,9 +16,17 @@ class HomeActivity : AppCompatActivity() {
             startActivity( Intent (this@HomeActivity, LifeCycleActivity::class.java))
         }
 
+        idSave.setOnClickListener {
+            startActivity( Intent (this@HomeActivity, FormulaireActivity::class.java))
+        }
+
+        idBtnPermit.setOnClickListener {
+            startActivity( Intent (this@HomeActivity, PermitActivity::class.java))
+        }
+
         idButtonDeco.setOnClickListener {
             setContentView(R.layout.activity_login)
-            //finish()
+            finish()
         }
     }
 }
