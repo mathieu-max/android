@@ -102,7 +102,7 @@ class PermitActivity : AppCompatActivity() {
         mLocationRequest.numUpdates = 1
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        mFusedLocationClient!!.requestLocationUpdates(
+        mFusedLocationClient?.requestLocationUpdates(
             mLocationRequest, mLocationCallback,
             Looper.myLooper()
         )
@@ -162,7 +162,7 @@ class PermitActivity : AppCompatActivity() {
     }
 
     fun imageFromGallery(){
-        val intent: Intent = Intent(Intent.ACTION_PICK)
+        val intent = Intent(Intent.ACTION_PICK)
         intent.setType("image/*")
         startActivityForResult(intent, IMAGE_PICK_REQUEST)
     }
@@ -176,7 +176,6 @@ class PermitActivity : AppCompatActivity() {
     }
 
     fun withItems() {
-
         val items = arrayOf("Prendre une photo", "Galerie")
         val builder = AlertDialog.Builder(this)
         with(builder)
@@ -190,7 +189,6 @@ class PermitActivity : AppCompatActivity() {
                     imageFromGallery()
                 }
             }
-
             setPositiveButton("Retour", backButtonClick)
             show()
         }

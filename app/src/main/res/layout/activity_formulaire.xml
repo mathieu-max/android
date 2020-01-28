@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".FormulaireActivity">
 
-    <Button
-        android:id="@+id/btngocalendar"
-        android:layout_width="282dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="76dp"
-        android:text="Date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
         android:layout_width="268dp"
@@ -86,10 +75,11 @@
         android:id="@+id/idShowDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="TextView"
+        android:layout_marginTop="60dp"
+        android:text="Sélectionner une date"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btngocalendar" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
