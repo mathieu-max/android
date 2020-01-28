@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.contact_list_items.activity_login)
 
         val loggedInput: SharedPreferences = getSharedPreferences("LoggedInfo", Context.MODE_PRIVATE)
         val savedIdentifiant = SharedPreferences.getString("admin", "")

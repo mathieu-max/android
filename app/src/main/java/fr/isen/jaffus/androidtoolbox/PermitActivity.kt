@@ -11,42 +11,55 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.location.Location
 import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.os.Looper
+import android.provider.ContactsContract
 import android.provider.MediaStore
 import android.provider.Settings
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.*
 import kotlinx.android.synthetic.main.activity_permit.*
-import android.provider.ContactsContract
 
 class PermitActivity : AppCompatActivity() {
 
-    val namePerson: ArrayList<String> = ArrayList()
+    val namePerson: MutableList<Contact> = ArrayList()
+    lateinit var mFusedLocationClient: FusedLocationProviderClient
 
     companion object{
         //Permission code
         private const val IMAGE_PICK_REQUEST = 1000
         private const val CAMERA_PICK_REQUEST = 4444
-        private const val CONTACT_PICK_REQUEST = 1001
         private const val IMAGE_PICK_CODE = 1000
-        const val PERMISSION_CODE = 1002
+        private const val PERMISSION_CONTACT_CODE = 1002
+        private const val PERMISSION_ID = 42
     }
-    val PERMISSION_ID = 42
-    lateinit var mFusedLocationClient: FusedLocationProviderClient
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_permit)
 
-        addnamePerson()
-        idListContact.layoutManager = LinearLayoutManager(this)
-        idListContact.adapter = ContactList(namePerson, this)
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.READ_CONTACTS)==
+                PackageManager.PERMISSION_DENIED
+            ) {
+                //permission denied
+                val permissions = arrayOf(Manifest.permission.READ_CONTACTS);
+                //show popup to request runtime permission
+                requestPermissions(permissions, PERMISSION_CONTACT_CODE);
+            } else {
+                //permission already granted
+                contactFonction()
+            }
+        } else{
+            contactFonction()
+        }
         photoUser.setOnClickListener {
             withItems()
         }
@@ -54,17 +67,11 @@ class PermitActivity : AppCompatActivity() {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         getLastLocation()
 
-    }
+        idListContact.layoutManager = LinearLayoutManager(this)
+        idListContact.adapter = ContactList(namePerson,this)
 
-    fun addnamePerson() {
-        namePerson.add("name1")
-        namePerson.add("name2")
-        namePerson.add("name3")
-        namePerson.add("name4")
-        namePerson.add("name5")
-        namePerson.add("name6")
-    }
 
+    }
 
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
@@ -148,7 +155,7 @@ class PermitActivity : AppCompatActivity() {
 
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        if (requestCode == PERMISSION_ID) {
+        if ((requestCode == PERMISSION_ID) || (requestCode == PERMISSION_CONTACT_CODE)) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                 getLastLocation()
             }
@@ -207,6 +214,22 @@ class PermitActivity : AppCompatActivity() {
         else if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_PICK_REQUEST){
             val imageBitmap = data?.extras?.get("data") as Bitmap
             photoUser.setImageBitmap(imageBitmap)
+        }
+    }
+
+    fun contactFonction(){
+
+        val cursorN= contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,null,null,null)
+        cursorN?.let{ cursor ->
+            while (cursor.moveToNext()){
+                val name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
+                val number = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                val obj = Contact()
+                obj.name = name
+                obj.number = number
+                namePerson.add(obj)
+            }
+        cursor.close()
         }
     }
 }

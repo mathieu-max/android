@@ -38,7 +38,7 @@ class CycleFragment1 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // Inflate the contact_list_items for this fragment
         return inflater.inflate(R.layout.fragment_cycle_fragment1, container, false)
     }
 }

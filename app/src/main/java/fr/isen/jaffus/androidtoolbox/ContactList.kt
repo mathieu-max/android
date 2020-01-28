@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.contact_list_items.view.*
 
 
-class ContactList(private val items : ArrayList<String>, val context: Context) : RecyclerView.Adapter<ViewHolder>() {
+class ContactList(private val items : List<Contact>, val context: Context) : RecyclerView.Adapter<ViewHolder>() {
+
+    private var list:List<Contact> = items
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -22,11 +25,14 @@ class ContactList(private val items : ArrayList<String>, val context: Context) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
-        holder?.nomPerson?.text = items.get(position)
+        holder.nomPerson.text = list[position].name
+        holder.number.text = list[position].number
+
     }
 }
 
 class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     // Holds the TextView that will add each person to
     val nomPerson: TextView = view.nomContact
+    val number: TextView = view.phoneNumber
 }
