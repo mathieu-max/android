@@ -54,13 +54,13 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="84dp"
         android:layout_marginRight="84dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/idBtnWebServices"
         app:layout_constraintStart_toStartOf="@+id/idButtonLog"
         app:layout_constraintTop_toBottomOf="@+id/idButtonCycle"
         app:srcCompat="@drawable/capture3" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/idBtnWebServices"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginTop="100dp"
@@ -107,10 +107,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="WebServices"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
+        app:layout_constraintEnd_toEndOf="@+id/idBtnWebServices"
         app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintStart_toStartOf="@+id/idBtnWebServices"
+        app:layout_constraintTop_toBottomOf="@+id/idBtnWebServices" />
 
     <Button
         android:id="@+id/idButtonDeco"

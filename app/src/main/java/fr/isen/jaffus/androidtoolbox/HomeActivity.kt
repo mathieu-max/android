@@ -3,7 +3,6 @@ package fr.isen.jaffus.androidtoolbox
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -22,6 +21,10 @@ class HomeActivity : AppCompatActivity() {
 
         idBtnPermit.setOnClickListener {
             startActivity( Intent (this@HomeActivity, PermitActivity::class.java))
+        }
+
+        idBtnWebServices.setOnClickListener {
+            startActivity( Intent (this@HomeActivity, WebServicesActivity::class.java))
         }
 
         idButtonDeco.setOnClickListener {

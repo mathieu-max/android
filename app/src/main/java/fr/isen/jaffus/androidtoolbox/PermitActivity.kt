@@ -27,14 +27,12 @@ import kotlinx.android.synthetic.main.activity_permit.*
 
 class PermitActivity : AppCompatActivity() {
 
-    val namePerson: MutableList<Contact> = ArrayList()
-    lateinit var mFusedLocationClient: FusedLocationProviderClient
+    private val namePerson: MutableList<Contact> = ArrayList()
+    private lateinit var mFusedLocationClient: FusedLocationProviderClient
 
     companion object{
-        //Permission code
         private const val IMAGE_PICK_REQUEST = 1000
         private const val CAMERA_PICK_REQUEST = 4444
-        private const val IMAGE_PICK_CODE = 1000
         private const val PERMISSION_CONTACT_CODE = 1002
         private const val PERMISSION_ID = 42
     }
@@ -49,16 +47,16 @@ class PermitActivity : AppCompatActivity() {
             if (checkSelfPermission(Manifest.permission.READ_CONTACTS)==
                 PackageManager.PERMISSION_DENIED
             ) {
-                //permission denied
-                val permissions = arrayOf(Manifest.permission.READ_CONTACTS);
-                //show popup to request runtime permission
-                requestPermissions(permissions, PERMISSION_CONTACT_CODE);
+
+                val permissions = arrayOf(Manifest.permission.READ_CONTACTS)
+
+                requestPermissions(permissions, PERMISSION_CONTACT_CODE)
             } else {
-                //permission already granted
-                contactFonction()
+
+                contactFunction()
             }
         } else{
-            contactFonction()
+            contactFunction()
         }
         photoUser.setOnClickListener {
             withItems()
@@ -109,7 +107,7 @@ class PermitActivity : AppCompatActivity() {
         mLocationRequest.numUpdates = 1
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        mFusedLocationClient?.requestLocationUpdates(
+        mFusedLocationClient.requestLocationUpdates(
             mLocationRequest, mLocationCallback,
             Looper.myLooper()
         )
@@ -162,19 +160,13 @@ class PermitActivity : AppCompatActivity() {
         }
     }
 
-        private fun pickImageFromGallery() {
+    private fun imageFromGallery(){
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_CODE)
-    }
-
-    fun imageFromGallery(){
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.setType("image/*")
         startActivityForResult(intent, IMAGE_PICK_REQUEST)
     }
 
-    fun imageFromCamera(){
+    private fun imageFromCamera(){
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(packageManager)?.also {
                 startActivityForResult(takePictureIntent, CAMERA_PICK_REQUEST)
@@ -182,7 +174,7 @@ class PermitActivity : AppCompatActivity() {
         }
     }
 
-    fun withItems() {
+    private fun withItems() {
         val items = arrayOf("Prendre une photo", "Galerie")
         val builder = AlertDialog.Builder(this)
         with(builder)
@@ -217,7 +209,7 @@ class PermitActivity : AppCompatActivity() {
         }
     }
 
-    fun contactFonction(){
+    private fun contactFunction(){
 
         val cursorN= contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,null,null,null)
         cursorN?.let{ cursor ->
