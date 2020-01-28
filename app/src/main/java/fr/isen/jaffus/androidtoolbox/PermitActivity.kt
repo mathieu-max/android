@@ -19,10 +19,14 @@ import android.provider.Settings
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.*
 import kotlinx.android.synthetic.main.activity_permit.*
+import android.provider.ContactsContract
 
 class PermitActivity : AppCompatActivity() {
+
+    val namePerson: ArrayList<String> = ArrayList()
 
     companion object{
         //Permission code
@@ -39,6 +43,10 @@ class PermitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_permit)
 
+        addnamePerson()
+        idListContact.layoutManager = LinearLayoutManager(this)
+        idListContact.adapter = ContactList(namePerson, this)
+
         photoUser.setOnClickListener {
             withItems()
         }
@@ -48,6 +56,14 @@ class PermitActivity : AppCompatActivity() {
 
     }
 
+    fun addnamePerson() {
+        namePerson.add("name1")
+        namePerson.add("name2")
+        namePerson.add("name3")
+        namePerson.add("name4")
+        namePerson.add("name5")
+        namePerson.add("name6")
+    }
 
 
     @SuppressLint("MissingPermission")
