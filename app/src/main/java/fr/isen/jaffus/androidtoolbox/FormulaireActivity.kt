@@ -72,7 +72,7 @@ class FormulaireActivity : AppCompatActivity()  {
 
     private fun updateDateInView(cal:Calendar) {
         val sdf = SimpleDateFormat(myFormat, Locale.FRANCE)
-        idShowDate!!.text = sdf.format(cal.time)
+        idShowDate?.text = sdf.format(cal.time)
     }
 }
 

@@ -17,16 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".WebServicesActivity"></activity>
-        <activity android:name=".ContactFragment" />
         <activity android:name=".PermitActivity" />
         <activity android:name=".StorageActivity" />
         <activity android:name=".FormulaireActivity" />
         <activity android:name=".CycleFragment2" />
         <activity android:name=".CycleFragment1" />
         <activity android:name=".LifeCycleActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".HomeActivity" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

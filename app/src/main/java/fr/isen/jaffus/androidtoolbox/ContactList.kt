@@ -27,7 +27,6 @@ class ContactList(private val items : List<Contact>, val context: Context) : Rec
     override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
         holder.nomPerson.text = list[position].name
         holder.number.text = list[position].number
-
     }
 }
 
