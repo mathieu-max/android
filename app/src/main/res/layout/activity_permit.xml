@@ -59,13 +59,26 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idListContact"
-        android:layout_width="317dp"
-        android:layout_height="470dp"
+        android:layout_width="348dp"
+        android:layout_height="383dp"
         android:layout_marginTop="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.287"
+        app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="@+id/photoUser"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.177" />
+        app:layout_constraintVertical_bias="0.765" />
+
+    <Button
+        android:id="@+id/refreshPermitActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="Refresh"
+        app:layout_constraintBottom_toTopOf="@+id/idListContact"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photoUser"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

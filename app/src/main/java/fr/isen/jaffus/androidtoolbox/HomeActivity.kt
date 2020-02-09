@@ -26,9 +26,9 @@ class HomeActivity : AppCompatActivity() {
             startActivity( Intent (this@HomeActivity, PermitActivity::class.java))
         }
 
-        /*idBtnWebServices.setOnClickListener {
+        idBtnWebServices.setOnClickListener {
             startActivity( Intent (this@HomeActivity, WebServicesActivity::class.java))
-        }*/
+        }
 
         idButtonDeco.setOnClickListener {
             val editor = sharedPreferences.edit()

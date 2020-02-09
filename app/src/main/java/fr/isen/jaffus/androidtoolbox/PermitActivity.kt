@@ -43,6 +43,11 @@ class PermitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_permit)
 
+        refreshPermitActivity.setOnClickListener{
+            finish();
+            startActivity( Intent (this@PermitActivity, PermitActivity::class.java));
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.READ_CONTACTS)==
                 PackageManager.PERMISSION_DENIED
